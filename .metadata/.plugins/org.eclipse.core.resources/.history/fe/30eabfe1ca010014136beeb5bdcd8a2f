@@ -1,0 +1,50 @@
+package com.example.myapp;
+
+import android.app.Activity;
+import android.app.ListActivity;
+import android.os.Bundle;
+import android.widget.Button;
+
+public class NewActivity extends Activity {
+	Button btn;
+	Bundle b= new Bundle();
+				
+	public void onCreate(Bundle savedInstanceState){
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.new_activity);
+		b=getIntent().getExtras();
+		String name = b.getString("name");
+		System.out.println(name);
+	}
+	public class Listview extends ListActivity {
+
+	    ListView lista;
+	    @Override
+	    protected void onCreate(Bundle savedInstanceState) {
+	        super.onCreate(savedInstanceState);
+	        setContentView(R.layout.activity_listaexemplu);
+
+	        lista = (ListView) findViewById(android.R.id.list);
+
+	        ArrayList<String> nume = new ArrayList<String>();
+	        nume.add("Produs1"); nume.add("Produs2");
+
+	        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nume);
+	        setListAdapter(adapter);
+
+	        lista.setOnItemClickListener(new OnItemClickListener() {
+
+	            @Override
+	            public void onItemClick(AdapterView<?> adaptor, View arg1, int position,
+	                    long id) {
+	                // TODO Auto-generated method stub
+	                Toast.makeText(Listaexemplu.this, "Ai apasat-o pe "+ adaptor.getItemAtPosition(position), Toast.LENGTH_SHORT).show()    ;
+	            }
+
+	        }); 
+	    }
+
+	}
+
+
+}
